@@ -6,9 +6,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class HomeService {
-  //private url = ' http://tsiete.com.mx/librosRincon_1/';
-  //private url = 'http://localhost/librosRincon/';
-  private url = 'http://librosdelrincon.sep.gob.mx/php/'
+  
+  //private url = 'http://librosdelrincon.sep.gob.mx/php/'
+  private url = 'https://tsiete.com.mx/LibrosDelRinconIMG/';
   constructor( private http: HttpClient) { }
   
   subirImagen(datos:any):Observable<any>{

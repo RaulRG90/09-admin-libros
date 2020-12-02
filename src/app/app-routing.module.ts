@@ -8,9 +8,9 @@ import { LibroMesComponent } from './pages/libro-mes/libro-mes.component';
 import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
-  { path: 'home'    , component: HomeComponent  },
-  { path: 'noticias'    , component: NoticiasComponent  },
-  { path: 'libros'    , component: LibroMesComponent },
+  { path: 'home'    , component: HomeComponent , canActivate: [ AuthGuard ] },
+  { path: 'noticias'    , component: NoticiasComponent, canActivate: [ AuthGuard ]  },
+  { path: 'libros'    , component: LibroMesComponent, canActivate: [ AuthGuard ] },
   { path: 'login'   , component: LoginComponent },
   { path: '**', redirectTo: 'login' }
 ];

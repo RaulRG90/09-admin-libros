@@ -11,7 +11,7 @@ import { map } from "rxjs/operators";
   providedIn: 'root'
 })
 export class AuthService {
-  //private url = 'https://tsiete.com.mx/librosRincon/';
+  //private url = 'https://tsiete.com.mx/LibrosDelRinconIMG/';
   private url = 'http://librosdelrincon.sep.gob.mx/php/';
 
   userToken: string;
