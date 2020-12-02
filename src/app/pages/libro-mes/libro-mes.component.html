@@ -85,15 +85,16 @@
                 <label> Páginas <span style="color:red">*</span></label><br><input type="text" [(ngModel)]="libro.paginas" placeholder="Paginas" name="páginas" value="" class="form-control" required><br>
                 <label> Reseña <span style="color:red">*</span></label><br><input type="text" [(ngModel)]="libro.resena" name="resena" value="" class="form-control" placeholder="Reseña" required><br>
                 <label> Coedición </label><br><input type="text" [(ngModel)]="libro.coedicion" name="coedicion" value="" class="form-control" placeholder="Coedición" required><br>
-               
+                <label> Imagen <span style="color:red">*</span></label><br> <input type="file" id="imageId" name="file" (change)="subiendoando($event)" accept="image/*" /><br>
+                <label>{{libro.img}}</label><br>
                 <label> Visible <span style="color:red">*</span></label>
                 <br>
                 <select class="form-control" [(ngModel)]="libro.publicado" name="publicado" value=""><option value="1">Si</option><option value="2">No</option></select>
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" (click)="recoverData()" data-dismiss="modal">Close</button>
-                <button type="submit" (click)="insertarLibros()" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+                <button type="button" class="btn btn-secondary" (click)="recoverData()" data-dismiss="modal">Cerrar</button>
+                <button type="submit" (click)="insertarLibros()" class="btn btn-primary" data-dismiss="modal">Guardar cambios</button>
             </div>
 
         </div>
@@ -110,7 +111,7 @@
 
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Modificar noticia</h5>
-                
+
             </div>
             <div class="modal-body">
                 <label>Año <span style="color:red">*</span></label><br><input type="text" [(ngModel)]="libro.anio" name="anio" value="" class="form-control" placeholder="Año" required><br>
@@ -121,8 +122,13 @@
                 <label> Páginas <span style="color:red">*</span></label><br><input type="text" [(ngModel)]="libro.paginas" placeholder="Páginas" name="paginas" value="" class="form-control" required><br>
                 <label> Reseña <span style="color:red">*</span></label><br><input type="text" [(ngModel)]="libro.resena" name="resena" value="" class="form-control" placeholder="Reseña" required><br>
                 <label> Coedición </label><br><input type="text" [(ngModel)]="libro.coedicion" name="coedicion" value="" class="form-control" placeholder="Coedición" required><br>
+                <div style="text-align: center;">
+                    <img [src]="libro.img" style="width: 80px;">
+                </div>
+                <label> Imagen <span style="color:red">*</span></label><br>
+                <input type="text" name="text" name="img" value="{{libro.img}}" class="form-control" required hidden/><br>
+                <input type="file" (change)="subiendoando($event)" accept="image/*" /><br>
 
-             
                 <label> Visible <span style="color:red">*</span></label>
                 <br>
 

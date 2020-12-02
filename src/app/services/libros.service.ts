@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class LibrosService {
   //private url = ' http://tsiete.com.mx/librosRincon_1/';
-  private url = 'http://librosdelrincon.sep.gob.mx/php_1/';
+  private url = 'http://librosdelrincon.sep.gob.mx/php/';
 
     constructor(private http: HttpClient) { 
      this.getLibros();

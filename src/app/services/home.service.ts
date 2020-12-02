@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class HomeService {
   //private url = ' http://tsiete.com.mx/librosRincon_1/';
   //private url = 'http://localhost/librosRincon/';
-  private url = 'http://librosdelrincon.sep.gob.mx/php_1/'
+  private url = 'http://librosdelrincon.sep.gob.mx/php/'
   constructor( private http: HttpClient) { }
   
   subirImagen(datos:any):Observable<any>{

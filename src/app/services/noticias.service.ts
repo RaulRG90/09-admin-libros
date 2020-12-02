@@ -6,10 +6,10 @@ import { Injectable } from '@angular/core';
 })
 export class NoticiasService {
   //private url = ' http://tsiete.com.mx/librosRincon_1/';
-  private url = 'http://librosdelrincon.sep.gob.mx/php_1/';
+  private url = 'http://librosdelrincon.sep.gob.mx/php/';
 
-  constructor(private http: HttpClient) { 
-    this.getNoticias();
+  constructor(private http: HttpClient) {
+        this.getNoticias();
   }
 
 

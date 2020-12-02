@@ -12,7 +12,7 @@ import { map } from "rxjs/operators";
 })
 export class AuthService {
   //private url = 'https://tsiete.com.mx/librosRincon/';
-  private url = 'http://librosdelrincon.sep.gob.mx/php_1/';
+  private url = 'http://librosdelrincon.sep.gob.mx/php/';
 
   userToken: string;
   verToken: string;
