@@ -5,20 +5,28 @@
             <div class="col-7">
                 <h2 id="quote"> Tabla de Libros</h2>
             </div>
-            <div class="col-5 text-right">
-                <button type="button" data-toggle="modal" (click)="cleanData()" data-target="#exampleModal" class="btn btn-primary">
-                  Crear Nuevo
-                          <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                          </svg>
-                </button>
+            <div class="row col-12">
+                <div class="col-12">
+                    <span style="color: red;">"El maximo de libros que se puede mostrar son 8"</span>
+
+                </div>
+            </div>
+            <div class="row col-12">
+                <div class="col-12 text-right m-1">
+                    <button type="button" data-toggle="modal" (click)="cleanData()" data-target="#exampleModal" class="btn btn-primary">
+                      Crear Nuevo
+                              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                              </svg>
+                    </button>
+                </div>
+
             </div>
         </div>
 
         <table id="example2" class="table table-striped">
             <thead class="thead-dark">
                 <tr>
-                    <th (click)="sort('Id')">Id&nbsp;<i class="fa fa-sort"></i></th>
                     <th>Imágen</th>
                     <th (click)="sort('Id')">Año&nbsp;<i class="fa fa-sort"></i></th>
                     <th (click)="sort('Id')">Título&nbsp;<i class="fa fa-sort"></i></th>
@@ -36,8 +44,7 @@
             <tbody>
 
 
-                <tr *ngFor="let item of listalibros | orderBy: key: reverse | paginate: {itemsPerPage:10,currentPage:p};">
-                    <th scope="col">{{item.id}} </th>
+                <tr *ngFor="let item of listalibros | paginate: {itemsPerPage:10,currentPage:p};">
                     <td><img [src]="item.img" style="width: 80px;"></td>
                     <td>{{item.anio}} </td>
                     <td>{{item.titulo}} </td>
