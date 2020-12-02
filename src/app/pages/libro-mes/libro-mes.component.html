@@ -1,0 +1,138 @@
+<div>
+    <app-navbar></app-navbar>
+    <div style="margin:  100px;">
+        <div class="row">
+            <div class="col-7">
+                <h2 id="quote"> Tabla de Libros</h2>
+            </div>
+            <div class="col-5 text-right">
+                <button type="button" data-toggle="modal" (click)="cleanData()" data-target="#exampleModal" class="btn btn-primary">
+                  Crear Nuevo
+                          <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                          </svg>
+                </button>
+            </div>
+        </div>
+
+        <table id="example2" class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th (click)="sort('Id')">Id&nbsp;<i class="fa fa-sort"></i></th>
+                    <th>Imágen</th>
+                    <th (click)="sort('Id')">Año&nbsp;<i class="fa fa-sort"></i></th>
+                    <th (click)="sort('Id')">Título&nbsp;<i class="fa fa-sort"></i></th>
+                    <th (click)="sort('Id')">Autor&nbsp;<i class="fa fa-sort"></i></th>
+                    <th (click)="sort('Id')">Edición&nbsp;<i class="fa fa-sort"></i></th>
+                    <th (click)="sort('Id')">Coedición&nbsp;<i class="fa fa-sort"></i></th>
+                    <th (click)="sort('Id')">páginas&nbsp;<i class="fa fa-sort"></i></th>
+                    <th (click)="sort('Id')">País&nbsp;<i class="fa fa-sort"></i></th>
+                    <th (click)="sort('Id')">Reseña&nbsp;<i class="fa fa-sort"></i></th>
+                    <th (click)="sort('Id')">Visible&nbsp;<i class="fa fa-sort"></i></th>
+                    <th> Acción </th>
+
+                </tr>
+            </thead>
+            <tbody>
+
+
+                <tr *ngFor="let item of listalibros | orderBy: key: reverse | paginate: {itemsPerPage:10,currentPage:p};">
+                    <th scope="col">{{item.id}} </th>
+                    <td><img [src]="item.img" style="width: 80px;"></td>
+                    <td>{{item.anio}} </td>
+                    <td>{{item.titulo}} </td>
+                    <td>{{item.autor}} </td>
+                    <td>{{item.edicion}} </td>
+                    <td>{{item.coedicion}} </td>
+                    <td>{{item.paginas}} </td>
+                    <td>{{item.pais}} </td>
+                    <td>{{item.resena}} </td>
+                    <td><label *ngIf="item.publicado == 1 "> si </label>
+                        <label *ngIf="item.publicado == 2 "> No </label> </td>
+                    <td><button type="button" class="btn btn-primary" (click)="openUpdateModal(item)" data-toggle="modal" data-target="#exampleModalEdit"> Editar</button></td>
+                </tr>
+
+            </tbody>
+
+        </table>
+        <div style="width: 100%;" style="text-align: right; margin: 20px;">
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Crear una nuevo libro del mes</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            </div>
+
+            <div class="modal-body">
+                <label>Año <span style="color:red">*</span></label><br><input type="text" [(ngModel)]="libro.anio" name="anio" value="" class="form-control" placeholder="Año" required><br>
+                <label> Título <span style="color:red">*</span></label><br><input type="text" [(ngModel)]="libro.titulo" name="titulo" value="" class="form-control" placeholder="Título" required><br>
+                <label> Autor <span style="color:red">*</span></label><br><input type="text" [(ngModel)]="libro.autor" name="autor" value="" class="form-control" placeholder="Autor" required><br>
+                <label> Edición <span style="color:red">*</span></label><br><input type="text" [(ngModel)]="libro.edicion" name="edicion" value="" class="form-control" placeholder="Edición" required><br>
+                <label> País <span style="color:red">*</span></label><br><input type="text" [(ngModel)]="libro.pais" name="pais" value="" class="form-control" placeholder="País" required><br>
+                <label> Páginas <span style="color:red">*</span></label><br><input type="text" [(ngModel)]="libro.paginas" placeholder="Paginas" name="páginas" value="" class="form-control" required><br>
+                <label> Reseña <span style="color:red">*</span></label><br><input type="text" [(ngModel)]="libro.resena" name="resena" value="" class="form-control" placeholder="Reseña" required><br>
+                <label> Coedición </label><br><input type="text" [(ngModel)]="libro.coedicion" name="coedicion" value="" class="form-control" placeholder="Coedición" required><br>
+               
+                <label> Visible <span style="color:red">*</span></label>
+                <br>
+                <select class="form-control" [(ngModel)]="libro.publicado" name="publicado" value=""><option value="1">Si</option><option value="2">No</option></select>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="recoverData()" data-dismiss="modal">Close</button>
+                <button type="submit" (click)="insertarLibros()" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div class="modal fade" id="exampleModalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modificar noticia</h5>
+                
+            </div>
+            <div class="modal-body">
+                <label>Año <span style="color:red">*</span></label><br><input type="text" [(ngModel)]="libro.anio" name="anio" value="" class="form-control" placeholder="Año" required><br>
+                <label> Título <span style="color:red">*</span></label><br><input type="text" [(ngModel)]="libro.titulo" name="titulo" value="" class="form-control" placeholder="Título" required><br>
+                <label> Autor <span style="color:red">*</span></label><br><input type="text" [(ngModel)]="libro.autor" name="autor" value="" class="form-control" placeholder="Autor" required><br>
+                <label> Edición <span style="color:red">*</span></label><br><input type="text" [(ngModel)]="libro.edicion" name="edicion" value="" class="form-control" placeholder="Edición" required><br>
+                <label> País <span style="color:red">*</span></label><br><input type="text" [(ngModel)]="libro.pais" name="pais" value="" class="form-control" placeholder="País" required><br>
+                <label> Páginas <span style="color:red">*</span></label><br><input type="text" [(ngModel)]="libro.paginas" placeholder="Páginas" name="paginas" value="" class="form-control" required><br>
+                <label> Reseña <span style="color:red">*</span></label><br><input type="text" [(ngModel)]="libro.resena" name="resena" value="" class="form-control" placeholder="Reseña" required><br>
+                <label> Coedición </label><br><input type="text" [(ngModel)]="libro.coedicion" name="coedicion" value="" class="form-control" placeholder="Coedición" required><br>
+
+             
+                <label> Visible <span style="color:red">*</span></label>
+                <br>
+
+                <select class="form-control" [(ngModel)]="libro.publicado" name="publicado" value=""><option value="1">Si</option><option value="2">No</option></select>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" (click)='recoverData()' class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="submit" (click)="actualizarLibros()" class="btn btn-primary" data-dismiss="modal">Guardar cambios</button>
+            </div>
+        </div>
+    </div>
+</div>

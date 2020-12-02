@@ -1,0 +1,117 @@
+<app-navbar></app-navbar>
+<div style="margin:  100px;">
+    <div class="row">
+        <div class="col-7">
+            <h2 id="quote" class="text-left mr-auto"> Tabla de Noticias</h2>
+        </div>
+        <div class="col-5 text-right">
+            <button type="button" class="btn btn-primary" data-toggle="modal" (click)="cleanData()" data-target="#exampleModal"> 
+              Crear Nuevo
+              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+              </svg>
+            </button>
+        </div>
+    </div>
+
+    <table id="example2" class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th (click)="sort('Id')">Id&nbsp;<i class="fa fa-sort"></i></th>
+                <th (click)="sort('Id')"> Titulo&nbsp;<i class="fa fa-sort"></i></th>
+                <th (click)="sort('Id')"> Fecha&nbsp;<i class="fa fa-sort"></i></th>
+                <th (click)="sort('Id')"> Url&nbsp;<i class="fa fa-sort"></i></th>
+                <th (click)="sort('Id')"> Visible&nbsp;<i class="fa fa-sort"></i></th>
+                <th> Acción </th>
+            </tr>
+        </thead>
+        <tbody>
+
+
+            <tr *ngFor="let item of listanoticias | orderBy: key: reverse | paginate: {itemsPerPage:10,currentPage:p};">
+                <th scope="col">{{item.id}} </th>
+                <td>{{item.titulo}} </td>
+                <td>{{item.fecha}} </td>
+                <td><a [href]="item.noticia_url" target="_blank">{{item.noticia_url}} </a></td>
+                <td>
+                    <label *ngIf="item.publicada == 1"> Visible </label>
+                    <label *ngIf="item.publicada == 2"> No Visible </label> </td>
+                <td>
+
+                    <button type="button" class="btn btn-primary" (click)="openUpdateModal(item)" data-toggle="modal" data-target="#exampleModalEdit"> Editar</button>
+
+                </td>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+    <div style="width: 100%;" style="text-align: right; margin: 20px;">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Crear una nueva noticia</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+                </div>
+                <form >
+                    <div class="modal-body">
+
+                        <label> Título <span style="color:red">*</span></label><br><input type="text" [(ngModel)]="noticia.titulo" name="titulo" value="" class="form-control" placeholder="title" required><br>
+                        <label> Fecha <span style="color:red">*</span></label><br><input type="text" [(ngModel)]="noticia.fecha" placeholder="Fecha" name="fecha" value="" class="form-control" required><br>
+                        <label> URL <span style="color:red">*</span></label><br><input type="text" [(ngModel)]="noticia.noticia_url" name="noticia_url" value="" class="form-control" placeholder="URL" required><br>
+                        <label> Visible <span style="color:red">*</span></label>
+                        <br>
+                        <select class="form-control" [(ngModel)]="noticia.Publicada" name="Publicada" value="">
+                          <option value="1">Si</option>
+                          <option value="2">No</option>
+                        </select>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary" (click)="insertarNoticias()"  data-dismiss="modal">Guadar cambios</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Editar</h5>
+                    
+                </div>
+                <div class="modal-body">
+
+                    <label> Título <span style="color:red">*</span></label><br><input type="text" [(ngModel)]="noticia.titulo" name="titulo" value="" class="form-control" placeholder="title" required><br>
+                    <label> Fecha <span style="color:red">*</span></label><br><input type="text" placeholder="Fecha" [(ngModel)]="noticia.fecha" name="fecha" value="" class="form-control" required><br>
+                    <label> URL <span style="color:red">*</span></label><br><input type="text" [(ngModel)]="noticia.noticia_url" name="noticia_url" value="" class="form-control" placeholder="URL" required><br>
+                    <label> Visible <span style="color:red">*</span></label>
+                    <br>
+                    <select class="form-control" [(ngModel)]="noticia.Publicada" name="Publicada" value=""><option value="1">Si</option><option value="2">No</option></select>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" (click)="recoverData()" data-dismiss="modal">Cerrar</button>
+                    <button type="button" (click)="actualizarNoticias()" class="btn btn-primary" data-dismiss="modal">Guadar cambios</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
