@@ -21,13 +21,14 @@ if(!$data){
   $fecha = $data['fecha'];
   $noticia_url = $data['noticia_url'];
   $publicada = $data['Publicada'];
+  $orden = $data['orden'];
 
-  if($id && $titulo && $fecha && $noticia_url  ){
+  if($id && $titulo && $fecha && $noticia_url && $orden  ){
     //query
-    $q = "UPDATE noticias SET titulo = '$titulo', fecha = '$fecha', noticia_url = '$noticia_url', publicada = $publicada WHERE id = $id";
+    $q = "UPDATE noticias SET titulo = '$titulo', fecha = '$fecha', noticia_url = '$noticia_url', publicada = $publicada , orden = $orden WHERE id = $id";
     $conn = conecta_bd();
     if(putSQL($q)){
-      $q = "SELECT * FROM noticias ORDER by id ASC" ;
+      $q = "SELECT * FROM noticias ORDER by orden DESC, publicada ASC" ;
         $result = mysqli_query($conn,$q);
         if($result->num_rows){
             while($row = $result->fetch_array(MYSQLI_ASSOC)) {

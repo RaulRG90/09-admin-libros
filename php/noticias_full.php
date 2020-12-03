@@ -6,7 +6,7 @@ header('content-type: application/json; charset=utf-8');
 
 
 include 'conecta.php';
-$q = "SELECT * FROM noticias ORDER by id ASC" ;
+$q = "SELECT * FROM noticias ORDER by orden DESC, publicada ASC" ;
 
 $conn	=	conecta_bd();
 $result = mysqli_query($conn,$q);

@@ -28,25 +28,27 @@ if(!$data){
   $pais = $data['pais'];
   $resena = $data['resena'];
   $publicado = $data['publicado'];
+  $mes_p = $data['mes_p'];
+  $orden = $data['orden'];
 
   if( 
     $id 
     && $titulo 
-    && $img 
+    && $orden
     && $autor 
     && $paginas 
     && $edicion
-    //&& $coedicion = ' ' 
+    && $mes_p
     && $anio 
     && $pais 
     && $resena 
     ){
   
     //query
-    $q = "UPDATE libros_mes SET titulo = '$titulo', img = '$img', autor = '$autor', paginas = '$paginas', edicion = '$edicion', coedicion = '$coedicion', anio = $anio, pais = '$pais', resena = '$resena', publicado = $publicado WHERE id = $id";
+    $q = "UPDATE libros_mes SET titulo = '$titulo', img = '$img', autor = '$autor', paginas = '$paginas', edicion = '$edicion', coedicion = '$coedicion', anio = $anio, pais = '$pais', resena = '$resena', publicado = $publicado, mes_p = '$mes_p', orden = $orden WHERE id = $id";
     $conn = conecta_bd();
     if(putSQL($q)){
-      $q = "SELECT * FROM libros_mes ORDER by id ASC" ;
+      $q = "SELECT * from libros_mes ORDER by  publicado ASC, mes_p DESC, orden ASC" ;
         $result = mysqli_query($conn,$q);
         if($result->num_rows){
             while($row = $result->fetch_array(MYSQLI_ASSOC)) {

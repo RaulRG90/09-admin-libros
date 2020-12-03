@@ -4,15 +4,13 @@ header("Access-Control-Allow-Methods: PUT, GET, POST, DELETE");
 header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 
 function conecta_bd(){
-   
-    
-	$servidor = "localhost";
-	//$usuario = "root";  //usario de la base de datos
-	//$clave = ""; // passwoord de la base de datos
+	$servidor = "192.168.101.150";
+	$usuario = "S2.k@Rz";  //usario de la base de datos
+	$clave = "Xr24*@z3"; // passwoord de la base de datos
 	//$bd = "querylibrosr";
-	$usuario = "tsieteco_dUCKSTE";  //usario de la base de datos
-	$clave = "pc8PN@^MI*"; // passwoord de la base de datos
-	$bd = "tsieteco_librosRincon_1";
+	//$usuario = "tsieteco_dUCKSTE";  //usario de la base de datos
+	//$clave = "pc8PN@^MI*"; // passwoord de la base de datos
+	$bd = "LibrosDelRinconAngular";
 
 	$conn=mysqli_connect($servidor,$usuario,$clave, $bd);
 

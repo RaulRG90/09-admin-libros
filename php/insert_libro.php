@@ -26,11 +26,14 @@ if(!$data){
   $pais = $data['pais'];
   $resena = $data['resena'];
   $publicado = $data['publicado'];
+  $mes_p = $data['mes_p'];
+  $orden = $data['orden'];
 
-  if( $titulo && $img && $autor && $paginas && $edicion && $anio && $pais && $resena  ){
+
+  if( $titulo && $autor && $paginas && $edicion && $anio && $pais && $resena ){
     //query
     
-    $q = "INSERT INTO libros_mes (titulo, img, autor, paginas, edicion, coedicion, anio, pais, resena, publicado ) VALUES ( '$titulo' , '$img' , '$autor' , '$paginas' , '$edicion' , '$coedicion' , $anio , '$pais' , '$resena' ,$publicado)";
+    $q = "INSERT INTO libros_mes (titulo, img, autor, paginas, edicion, coedicion, anio, pais, resena, publicado, mes_p, orden ) VALUES ( '$titulo' , '$img' , '$autor' , '$paginas' , '$edicion' , '$coedicion' , $anio , '$pais' , '$resena' ,$publicado, '$mes_p', $orden)";
     $conn = conecta_bd();
     if(putSQL($q)){
       $q = "SELECT * FROM libros_mes WHERE publicado = 1 ORDER by id ASC" ;

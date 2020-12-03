@@ -20,13 +20,14 @@ if(!$data){
   $fecha = $data['fecha'];
   $noticia_url = $data['noticia_url'];
   $publicada = $data['Publicada'];
+  $orden = $data['orden'];
 
-  if($titulo && $fecha && $noticia_url ){
+  if($titulo && $fecha && $noticia_url && $orden ){
     //query
-    $q = "INSERT INTO noticias (titulo, fecha, noticia_url, publicada) VALUES ('$titulo', '$fecha', '$noticia_url', $publicada )";
+    $q = "INSERT INTO noticias (titulo, fecha, noticia_url, publicada,orden) VALUES ('$titulo', '$fecha', '$noticia_url', $publicada, $orden )";
     $conn = conecta_bd();
     if(putSQL($q)){
-      $q = "SELECT * FROM noticias ORDER by id ASC" ;
+      $q = "SELECT * FROM noticias ORDER by orden DESC, publicada ASC" ;
         $result = mysqli_query($conn,$q);
         if($result->num_rows){
             while($row = $result->fetch_array(MYSQLI_ASSOC)) {

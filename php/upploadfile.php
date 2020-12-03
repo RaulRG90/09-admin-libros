@@ -10,8 +10,8 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     echo json_encode(array('status' => false));
     exit;
 }
-$path = '../assets/img/libros_mes/';
-$url = 'http://librosdelrincon.sep.gob.mx/assets/img/libros_mes/';
+$path = 'libros_mes/';
+$url = 'https://tsiete.com.mx/LibrosDelRinconIMG/libros_mes/';
 if (isset($_FILES['file'])) {
     $originalName = $_FILES['file']['name'];
     $ext = '.'.pathinfo($originalName, PATHINFO_EXTENSION);

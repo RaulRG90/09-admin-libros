@@ -4,9 +4,16 @@ header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Ac
 header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE');
 header('content-type: application/json; charset=utf-8');
 
+$anio = date("Y");  
+$mes = date("n");  
+
+if($mes == 1){
+    $anio = $anio - 1;
+    $mes = 13;
+}
 
 include 'conecta.php';
-$q = "SELECT * FROM noticias WHERE publicada = 1 ORDER by orden DESC" ;
+$q = "SELECT * FROM libros_mes WHERE MONTH(mes_p) < $mes AND YEAR(mes_p) = $anio" ;
 
 $conn	=	conecta_bd();
 $result = mysqli_query($conn,$q);
@@ -22,7 +29,7 @@ if ($result->num_rows) {
   $data = str_replace("\\/", "/", $jsonencoded);
   echo $data;
 }else{
-  echo 'no se encontraaron registros';
+  echo 'no se encontraron registros';
 }
 	
 

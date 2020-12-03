@@ -6,7 +6,7 @@ header('content-type: application/json; charset=utf-8');
 
 
 include 'conecta.php';
-$q = "SELECT id , img from libros_mes where publicado = 1 ORDER by id ASC" ;
+$q = "SELECT id , img from libros_mes where publicado = 1 ORDER by publicado, titulo ASC LIMIT 12 " ;
 
 $conn	=	conecta_bd();
 if ($result = mysqli_query($conn,$q)) {
