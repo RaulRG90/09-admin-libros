@@ -30,19 +30,7 @@ export class LibrosService {
   
       updateLibros(libro){
         //console.log(libro);
-        /*const librosData = {
-          "id": libro.id,
-          "titulo": libro.autor,
-          "edicion": libro.edicion,
-          "pais": libro.pais,
-          "anio": libro.anio,
-          "paginas": libro.pagina,
-          "autor": libro.actualizado,
-          "publicado": libro.publicado,
-          "coedicion" : libro.coedicion,
-          "img" : libro.img,
-          "resena" : libro.resena
-        }*/
+        
         return this.http.post(
           `${this.url}update_libro.php`, libro
         );

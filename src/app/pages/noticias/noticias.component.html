@@ -2,7 +2,7 @@
 <div style="margin:  100px;">
     <div class="row">
         <div class="col-7">
-            <h2 id="quote" class="text-left mr-auto"> Tabla de Noticias</h2>
+            <h2 id="quote" class="text-left mr-auto"> Tabla de Noticias de Interés</h2>
         </div>
         <div class="row col-12">
             <div class="col-12">
@@ -75,9 +75,9 @@
                 <form>
                     <div class="modal-body">
 
-                        <label> Título <span style="color:red">*</span></label><br><input type="text" [(ngModel)]="noticia.titulo" name="titulo" value="" class="form-control" placeholder="title" required><br>
-                        <label> Fecha <span style="color:red">*</span></label><br><input type="text" [(ngModel)]="noticia.fecha" placeholder="Fecha" name="fecha" value="" class="form-control" required><br>
-                        <label> URL <span style="color:red">*</span></label><br><input type="text" [(ngModel)]="noticia.noticia_url" name="noticia_url" value="" class="form-control" placeholder="URL" required><br>
+                        <label> Título <span style="color:red">*</span></label><br><input type="text" [(ngModel)]="noticia.titulo" name="titulo" value="" class="form-control" placeholder="Título" required><br>
+                        <label> Fecha <span style="color:red">*</span></label><br><input type="text" [(ngModel)]="noticia.fecha" placeholder="Mes - Año" name="fecha" value="" class="form-control" required><br>
+                        <label> URL <span style="color:red">*</span></label><br><input type="text" [(ngModel)]="noticia.noticia_url" name="noticia_url" value="" class="form-control" placeholder="https://www.ejemplo.com" required><br>
                         <label> Orden <span style="color:red">*</span></label><br><input type="number" [(ngModel)]="noticia.orden" name="orden" value="" class="form-control" placeholder="0" required><br>
                         <label> Visible <span style="color:red">*</span></label>
                         <br>
@@ -110,9 +110,9 @@
                 </div>
                 <div class="modal-body">
 
-                    <label> Título <span style="color:red">*</span></label><br><input type="text" [(ngModel)]="noticia.titulo" name="titulo" value="" class="form-control" placeholder="title" required><br>
-                    <label> Fecha <span style="color:red">*</span></label><br><input type="text" placeholder="Fecha" [(ngModel)]="noticia.fecha" name="fecha" value="" class="form-control" required><br>
-                    <label> URL <span style="color:red">*</span></label><br><input type="text" [(ngModel)]="noticia.noticia_url" name="noticia_url" value="" class="form-control" placeholder="URL" required><br>
+                    <label> Título <span style="color:red">*</span></label><br><input type="text" [(ngModel)]="noticia.titulo" name="titulo" value="" class="form-control" placeholder="Título" required><br>
+                    <label> Fecha <span style="color:red">*</span></label><br><input type="text" placeholder="Fecha" [(ngModel)]="noticia.fecha" name="Mes - Año" value="" class="form-control" required><br>
+                    <label> URL <span style="color:red">*</span></label><br><input type="text" [(ngModel)]="noticia.noticia_url" name="noticia_url" value="" class="form-control" placeholder="https://www.ejemplo.com" required><br>
                     <label> Orden <span style="color:red">*</span></label><br><input type="number" [(ngModel)]="noticia.orden" name="orden" value="" class="form-control" placeholder="0" required><br>
                     <label> Visible <span style="color:red">*</span></label>
                     <br>

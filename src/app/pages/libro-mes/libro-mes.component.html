@@ -3,7 +3,7 @@
     <div style="margin:  100px;">
         <div class="row">
             <div class="col-7">
-                <h2 id="quote"> Tabla de Libros</h2>
+                <h2 id="quote"> Tabla de Libros sugeridos</h2>
             </div>
             <div class="row col-12">
                 <div class="col-12">
@@ -23,10 +23,10 @@
 
             </div>
         </div>
-
         <table id="example2" class="table table-striped">
             <thead class="thead-dark">
                 <tr>
+                    <th (click)="sort('Id')">Mes de publicación&nbsp;<i class="fa fa-sort"></i></th>
                     <th>Imágen</th>
                     <th (click)="sort('Id')">Año&nbsp;<i class="fa fa-sort"></i></th>
                     <th (click)="sort('Id')">Título&nbsp;<i class="fa fa-sort"></i></th>
@@ -36,6 +36,7 @@
                     <th (click)="sort('Id')">páginas&nbsp;<i class="fa fa-sort"></i></th>
                     <th (click)="sort('Id')">País&nbsp;<i class="fa fa-sort"></i></th>
                     <th (click)="sort('Id')">Reseña&nbsp;<i class="fa fa-sort"></i></th>
+                    <th (click)="sort('Id')">Orden&nbsp;<i class="fa fa-sort"></i></th>
                     <th (click)="sort('Id')">Visible&nbsp;<i class="fa fa-sort"></i></th>
                     <th> Acción </th>
 
@@ -45,6 +46,7 @@
 
 
                 <tr *ngFor="let item of listalibros | paginate: {itemsPerPage:10,currentPage:p};">
+                    <td>{{item.mes_p | date:'MM - yyyy'}} </td>
                     <td><img [src]="item.img" style="width: 80px;"></td>
                     <td>{{item.anio}} </td>
                     <td>{{item.titulo}} </td>
@@ -54,8 +56,10 @@
                     <td>{{item.paginas}} </td>
                     <td>{{item.pais}} </td>
                     <td>{{item.resena}} </td>
+                    <td>{{item.orden}} </td>
                     <td><label *ngIf="item.publicado == 1 "> si </label>
-                        <label *ngIf="item.publicado == 2 "> No </label> </td>
+                        <label *ngIf="item.publicado == 2 "> No </label>
+                    </td>
                     <td><button type="button" class="btn btn-primary" (click)="openUpdateModal(item)" data-toggle="modal" data-target="#exampleModalEdit"> Editar</button></td>
                 </tr>
 
@@ -84,16 +88,23 @@
             </div>
 
             <div class="modal-body">
-                <label>Año <span style="color:red">*</span></label><br><input type="text" [(ngModel)]="libro.anio" name="anio" value="" class="form-control" placeholder="Año" required><br>
+                <label>Mes de publicación en el portal <span style="color:red">*</span></label><br>
+                <input type="date" [(ngModel)]="libro.mes_p" name="mes_p" class="form-control" required>
+                <br>
+                <label>Año <span style="color:red">*</span></label><br><input type="number" [(ngModel)]="libro.anio" name="anio" value="" class="form-control" placeholder="2000" required><br>
                 <label> Título <span style="color:red">*</span></label><br><input type="text" [(ngModel)]="libro.titulo" name="titulo" value="" class="form-control" placeholder="Título" required><br>
                 <label> Autor <span style="color:red">*</span></label><br><input type="text" [(ngModel)]="libro.autor" name="autor" value="" class="form-control" placeholder="Autor" required><br>
                 <label> Edición <span style="color:red">*</span></label><br><input type="text" [(ngModel)]="libro.edicion" name="edicion" value="" class="form-control" placeholder="Edición" required><br>
                 <label> País <span style="color:red">*</span></label><br><input type="text" [(ngModel)]="libro.pais" name="pais" value="" class="form-control" placeholder="País" required><br>
-                <label> Páginas <span style="color:red">*</span></label><br><input type="text" [(ngModel)]="libro.paginas" placeholder="Paginas" name="páginas" value="" class="form-control" required><br>
+                <label> Páginas <span style="color:red">*</span></label><br><input type="number" [(ngModel)]="libro.paginas" placeholder="Paginas" name="páginas" value="" class="form-control" required><br>
                 <label> Reseña <span style="color:red">*</span></label><br><input type="text" [(ngModel)]="libro.resena" name="resena" value="" class="form-control" placeholder="Reseña" required><br>
                 <label> Coedición </label><br><input type="text" [(ngModel)]="libro.coedicion" name="coedicion" value="" class="form-control" placeholder="Coedición" required><br>
-                <label> Imagen <span style="color:red">*</span></label><br> <input type="file" id="imageId" name="file" (change)="subiendoando($event)" accept="image/*" /><br>
-                <label>{{libro.img}}</label><br>
+                <label> Orden </label><br><input type="number" [(ngModel)]="libro.orden" name="orden" class="form-control" placeholder="0" required><br>
+                <label> Imagen <span style="color:red">*</span></label><br>
+                <div style="text-align: center;" *ngIf="libro.img">
+                    <img [src]="libro.img" style="width: 80px;">
+                </div>
+                <input type="file" id="imageId" name="file" (change)="subiendoando($event)" accept="image/*" /><br>
                 <label> Visible <span style="color:red">*</span></label>
                 <br>
                 <select class="form-control" [(ngModel)]="libro.publicado" name="publicado" value=""><option value="1">Si</option><option value="2">No</option></select>
@@ -121,21 +132,24 @@
 
             </div>
             <div class="modal-body">
+                <label>Mes de publicación en el portal <span style="color:red">*</span></label><br>
+                <input type="date" [(ngModel)]="libro.mes_p" name="mes_p" class="form-control" required>
+                <br>
                 <label>Año <span style="color:red">*</span></label><br><input type="text" [(ngModel)]="libro.anio" name="anio" value="" class="form-control" placeholder="Año" required><br>
                 <label> Título <span style="color:red">*</span></label><br><input type="text" [(ngModel)]="libro.titulo" name="titulo" value="" class="form-control" placeholder="Título" required><br>
                 <label> Autor <span style="color:red">*</span></label><br><input type="text" [(ngModel)]="libro.autor" name="autor" value="" class="form-control" placeholder="Autor" required><br>
                 <label> Edición <span style="color:red">*</span></label><br><input type="text" [(ngModel)]="libro.edicion" name="edicion" value="" class="form-control" placeholder="Edición" required><br>
                 <label> País <span style="color:red">*</span></label><br><input type="text" [(ngModel)]="libro.pais" name="pais" value="" class="form-control" placeholder="País" required><br>
-                <label> Páginas <span style="color:red">*</span></label><br><input type="text" [(ngModel)]="libro.paginas" placeholder="Páginas" name="paginas" value="" class="form-control" required><br>
+                <label> Páginas <span style="color:red">*</span></label><br><input type="number" [(ngModel)]="libro.paginas" placeholder="Páginas" name="paginas" value="" class="form-control" required><br>
                 <label> Reseña <span style="color:red">*</span></label><br><input type="text" [(ngModel)]="libro.resena" name="resena" value="" class="form-control" placeholder="Reseña" required><br>
                 <label> Coedición </label><br><input type="text" [(ngModel)]="libro.coedicion" name="coedicion" value="" class="form-control" placeholder="Coedición" required><br>
+                <label> Orden </label><br><input type="number" [(ngModel)]="libro.orden" name="orden" class="form-control" placeholder="0" required><br>
+                <label> Imagen <span style="color:red">*</span></label><br>
                 <div style="text-align: center;">
                     <img [src]="libro.img" style="width: 80px;">
                 </div>
-                <label> Imagen <span style="color:red">*</span></label><br>
                 <input type="text" name="text" name="img" value="{{libro.img}}" class="form-control" required hidden/><br>
                 <input type="file" (change)="subiendoando($event)" accept="image/*" /><br>
-
                 <label> Visible <span style="color:red">*</span></label>
                 <br>
 

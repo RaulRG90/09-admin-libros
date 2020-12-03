@@ -42,10 +42,12 @@ export class LibroMesComponent implements OnInit {
   }
   //insertar noticias, mensaje de si hubo e
   insertarLibros() {
+    console.log(this.libro);
+
     this.librosService.createLibros(this.libro).subscribe(
       res => {
+        //console.log(res);
         this.listalibros = res; //arreglo actualizado
-        console.log(res);
         Swal.fire({
           position: 'center',
           icon: 'success',
@@ -53,11 +55,11 @@ export class LibroMesComponent implements OnInit {
           showConfirmButton: false,
           timer: 1500
         });
-        this.libro = { publicado: 1 }
+        this.libro = { publicado: 1 };
         // console.log(JSON.stringify(res));
       },
       err => {
-        alert("no se pudo crear el regsitro");
+        alert("no se pudo crear el registro");
         //console.log(JSON.stringify(err));
       }
     );
@@ -127,13 +129,13 @@ export class LibroMesComponent implements OnInit {
         alert('El tamaño supera el limite permitido');
 
       } else {
-        let file = this.image.files[0]
-        let newThis = this
-        let image = new Image()
-        image.src = URL.createObjectURL(file)
+        let file = this.image.files[0];
+        let newThis = this;
+        let image = new Image();
+        image.src = URL.createObjectURL(file);
         image.addEventListener('load',function(img){
           //console.log(this.width)
-          if(this.width <=350 && this.height <=500){
+          if(this.width == 350 && this.height == 500){
             let form = new FormData();
             form.append('file',file);
             newThis.subir.subirImagen(form).subscribe(
@@ -145,13 +147,13 @@ export class LibroMesComponent implements OnInit {
                 }
               },
               error => {
-                alert('Imagen supera el tamaño permitido, porfavor ingrese una imagen que no sobrepase 350px X 500px');
+                alert('Imagen supera el tamaño permitido, porfavor ingrese una imagen de 350px X 500px');
     
               }
             );
           }else{
             (<HTMLInputElement>document.getElementById('imageId')).value = '';
-            alert("Las dimensiones de la imagen no deben de sobrepasar los 350px de ancho y 500px de alto")
+            alert("Las dimensiones de la imagen debe de ser 350px de ancho y 500px de alto")
             
           }
         })
