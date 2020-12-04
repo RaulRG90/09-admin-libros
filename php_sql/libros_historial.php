@@ -13,7 +13,7 @@ if($mes == 1){
 }
 
 include 'conecta.php';
-$q = "SELECT titulo,img,autor,paginas,edicion,coedicion,anio,pais,resena,orden,mes_p FROM libros_mes WHERE MONTH(mes_p) < $mes AND YEAR(mes_p) = $anio ORDER BY mes_p, orden ASC" ;
+$q = "SELECT id,titulo,img,autor,paginas,edicion,coedicion,anio,pais,resena,orden,mes_p FROM libros_mes WHERE MONTH(mes_p) < $mes AND YEAR(mes_p) = $anio ORDER BY mes_p DESC, orden ASC" ;
 
 $conn	=	conecta_bd();
 $result = mysqli_query($conn,$q);
